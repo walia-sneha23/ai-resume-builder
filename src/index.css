@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================
+   GLOBAL THEME
+   ========================================= */
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* =========================================
+   DARK MODE - APP BACKGROUND
+   ========================================= */
+
+.dark body {
+  background-color: #020617;
+  color: #f8fafc;
+}
+
+/* Main common backgrounds */
+.dark .bg-white {
+  background-color: #1e293b;
+}
+
+.dark .bg-slate-50 {
+  background-color: #0f172a;
+}
+
+.dark .bg-slate-100 {
+  background-color: #1e293b;
+}
+
+/* =========================================
+   DARK MODE - TEXT
+   ========================================= */
+
+.dark .text-slate-800 {
+  color: #f8fafc;
+}
+
+.dark .text-slate-700 {
+  color: #e2e8f0;
+}
+
+.dark .text-slate-600 {
+  color: #cbd5e1;
+}
+
+.dark .text-slate-500 {
+  color: #94a3b8;
+}
+
+.dark .text-slate-400 {
+  color: #94a3b8;
+}
+
+/* =========================================
+   DARK MODE - BORDERS
+   ========================================= */
+
+.dark .border-slate-200 {
+  border-color: #334155;
+}
+
+.dark .border-slate-100 {
+  border-color: #334155;
+}
+
+.dark .border-slate-300 {
+  border-color: #475569;
+}
+
+/* =========================================
+   DARK MODE - INPUTS
+   ========================================= */
+
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: #334155;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #94a3b8;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: #3b82f6;
+}
+
+/* =========================================
+   DARK MODE - HOVER
+   ========================================= */
+
+.dark .hover\:bg-slate-50:hover {
+  background-color: #334155;
+}
+
+.dark .hover\:bg-slate-100:hover {
+  background-color: #334155;
+}
+
+.dark .hover\:bg-slate-200:hover {
+  background-color: #475569;
+}
+
+/* =========================================
+   SMOOTH THEME TRANSITION
+   ========================================= */
+
+* {
+  transition-property:
+    background-color,
+    border-color,
+    color,
+    box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
