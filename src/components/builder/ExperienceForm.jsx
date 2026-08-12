@@ -9,7 +9,7 @@ import { useState } from "react";
 import axios from "axios";
 
 import { useResume } from "../../context/ResumeContext";
-
+const API_URL = import.meta.env.VITE_API_URL;
 function ExperienceForm({ setActiveSection }) {
   const { resumeData, updateResume } = useResume();
 
@@ -126,8 +126,8 @@ function ExperienceForm({ setActiveSection }) {
           : "Fresher";
 
       const response =
-        await axios.post(
-          "http://localhost:5000/api/ai/generate-experience",
+  await axios.post(
+    `${API_URL}/api/ai/generate-experience`,
           {
             jobRole:
               experience.jobTitle.trim(),

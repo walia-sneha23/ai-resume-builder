@@ -13,7 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 import ResumePreview from "../../components/builder/ResumePreview";
 import { useResume } from "../../context/ResumeContext";
 
@@ -52,7 +52,7 @@ function MyResumes() {
       }
 
       const res = await axios.get(
-        "http://localhost:5000/api/resumes",
+        `${API_URL}/api/resumes`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -343,7 +343,7 @@ function MyResumes() {
 
       const response =
         await axios.get(
-          `http://localhost:5000/api/pdf/download/${resume._id}`,
+          `${API_URL}/api/pdf/download/${resume._id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -426,7 +426,7 @@ function MyResumes() {
         localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:5000/api/resumes/${id}`,
+        `${API_URL}/api/resumes/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -5,7 +5,7 @@ import {
 } from "react";
 
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const ResumeContext = createContext();
 
 export function ResumeProvider({ children }) {
@@ -233,10 +233,10 @@ export function ResumeProvider({ children }) {
         payload
       );
 
-      const res =
-        await axios.post(
-          "http://localhost:5000/api/resumes",
-          payload,
+     const res =
+  await axios.post(
+    `${API_URL}/api/resumes`,
+    payload,
           {
             headers: {
               Authorization: `Bearer ${token}`,

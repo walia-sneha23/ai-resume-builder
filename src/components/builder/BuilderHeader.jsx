@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useResume } from "../../context/ResumeContext";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function BuilderHeader({ onPreview }) {
   const [selectedTemplate, setSelectedTemplate] =
     useState("None");
@@ -158,7 +160,7 @@ function BuilderHeader({ onPreview }) {
       try {
         const summaryResponse =
           await axios.post(
-            "http://localhost:5000/api/ai/generate-summary",
+            `${API_URL}/api/ai/generate-summary`,
             {
               jobRole,
               experience:
@@ -203,7 +205,7 @@ function BuilderHeader({ onPreview }) {
                 try {
                   const response =
                     await axios.post(
-                      "http://localhost:5000/api/ai/generate-experience",
+                      `${API_URL}/api/ai/generate-experience`,
                       {
                         jobRole:
                           item.jobTitle ||
@@ -230,8 +232,9 @@ function BuilderHeader({ onPreview }) {
                   ) {
                     return {
                       ...item,
-                     description:
-  item.description || response.data.experience.trim(),
+                      description:
+                        item.description ||
+                        response.data.experience.trim(),
                     };
                   }
 
@@ -268,7 +271,7 @@ function BuilderHeader({ onPreview }) {
                 try {
                   const response =
                     await axios.post(
-                      "http://localhost:5000/api/ai/generate-project-description",
+                      `${API_URL}/api/ai/generate-project-description`,
                       {
                         projectName:
                           project.title ||
@@ -291,9 +294,9 @@ function BuilderHeader({ onPreview }) {
                   ) {
                     return {
                       ...project,
-                    description:
-  project.description ||
-  response.data.description.trim(),
+                      description:
+                        project.description ||
+                        response.data.description.trim(),
                     };
                   }
 
@@ -320,7 +323,7 @@ function BuilderHeader({ onPreview }) {
       try {
         const skillsResponse =
           await axios.post(
-            "http://localhost:5000/api/ai/generate-skills",
+            `${API_URL}/api/ai/generate-skills`,
             {
               jobRole,
               experience:

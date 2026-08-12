@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 import {
   LineChart,
   Line,
@@ -28,9 +28,8 @@ function AnalyticsChart() {
           setLoading(false);
           return;
         }
-
-        const response = await axios.get(
-          "http://localhost:5000/api/resumes",
+const response = await axios.get(
+  `${API_URL}/api/resumes`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

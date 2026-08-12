@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 import Greeting from "../../components/dashboard/Greeting";
 import StatCard from "../../components/dashboard/StatCard";
 import AnalyticsChart from "../../components/dashboard/AnalyticsChart";
@@ -34,8 +34,8 @@ function Dashboard() {
           return;
         }
 
-        const response = await axios.get(
-          "http://localhost:5000/api/resumes",
+       const response = await axios.get(
+  `${API_URL}/api/resumes`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

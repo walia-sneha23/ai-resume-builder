@@ -6,7 +6,7 @@ import {
   BadgeCheck,
 } from "lucide-react";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 function ProgressCard() {
   const [progress, setProgress] = useState([
     {
@@ -46,7 +46,7 @@ function ProgressCard() {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/resumes",
+  `${API_URL}/api/resumes`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

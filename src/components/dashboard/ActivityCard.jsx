@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 function ActivityCard() {
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ function ActivityCard() {
         }
 
         const response = await axios.get(
-          "http://localhost:5000/api/resumes",
+  `${API_URL}/api/resumes`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

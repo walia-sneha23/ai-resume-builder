@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 import { useResume } from "../../context/ResumeContext";
-
+const API_URL = import.meta.env.VITE_API_URL;
 function AIResume() {
   const navigate = useNavigate();
   const { updateResume } = useResume();
@@ -47,7 +47,7 @@ function AIResume() {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:5000/api/ai/generate-summary",
+  `${API_URL}/api/ai/generate-summary`,
         {
           jobRole,
           experience,

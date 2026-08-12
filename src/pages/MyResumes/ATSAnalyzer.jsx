@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 function ATSAnalyzer() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -46,8 +46,8 @@ function ATSAnalyzer() {
         return;
       }
 
-      const response = await axios.get(
-        `http://localhost:5000/api/resumes/${id}`,
+   const response = await axios.get(
+  `${API_URL}/api/resumes/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -182,7 +182,7 @@ function ATSAnalyzer() {
       // ==========================================
 
       const response = await axios.post(
-        "http://localhost:5000/api/ai/analyze-ats",
+  `${API_URL}/api/ai/analyze-ats`,
         {
           summary,
           skills,
@@ -214,7 +214,7 @@ function ATSAnalyzer() {
 
         try {
           await axios.put(
-            `http://localhost:5000/api/resumes/${id}`,
+  `${API_URL}/api/resumes/${id}`,
             {
               atsScore: score,
             },

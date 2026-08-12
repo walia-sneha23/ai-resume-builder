@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+const API_URL = import.meta.env.VITE_API_URL;
 import {
   FileText,
   Sparkles,
@@ -136,7 +136,7 @@ function CoverLetter() {
       // ==========================================
 
       const response = await axios.post(
-        "http://localhost:5000/api/ai/generate-cover-letter",
+  `${API_URL}/api/ai/generate-cover-letter`,
         {
           fullName:
             resumeData.fullName || "",
