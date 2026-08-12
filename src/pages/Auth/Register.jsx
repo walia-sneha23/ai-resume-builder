@@ -16,7 +16,7 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setError("");
@@ -37,11 +37,14 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     try {
       setLoading(true);
 
-      await axios.post("http://localhost:5000/api/auth/register", {
-        fullName: formData.name,
-  email: formData.email,
-  password: formData.password,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        {
+          fullName: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }
+      );
 
       alert("Registration Successful");
 
@@ -61,7 +64,7 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
         <div className="text-center">
           <h1 className="text-4xl font-bold text-slate-900">
-            Create Account 
+            Create Account
           </h1>
 
           <p className="mt-3 text-slate-600">
@@ -109,69 +112,75 @@ const [showConfirmPassword, setShowConfirmPassword] = useState(false);
             />
           </div>
 
-        <div>
-  <label className="mb-2 block font-medium text-slate-700">
-    Password
-  </label>
+          <div>
+            <label className="mb-2 block font-medium text-slate-700">
+              Password
+            </label>
 
-  <div className="relative">
-    <input
-      type={showPassword ? "text" : "password"}
-      name="password"
-      value={formData.password}
-      onChange={handleChange}
-      placeholder="Create a password"
-      required
-      className="w-full rounded-xl border border-slate-300 py-3 pl-4 pr-12 outline-none transition hover:border-blue-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-    />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Create a password"
+                required
+                className="w-full rounded-xl border border-slate-300 py-3 pl-4 pr-12 outline-none transition hover:border-blue-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+              />
 
-    <button
-      type="button"
-      onClick={() => setShowPassword(!showPassword)}
-      className="absolute inset-y-0 right-4 flex items-center text-slate-500 hover:text-blue-600"
-    >
-      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-    </button>
-  </div>
-</div>
-         <div>
-  <label className="mb-2 block font-medium text-slate-700">
-    Confirm Password
-  </label>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-4 flex items-center text-slate-500 hover:text-blue-600"
+              >
+                {showPassword ? (
+                  <EyeOff size={20} />
+                ) : (
+                  <Eye size={20} />
+                )}
+              </button>
+            </div>
+          </div>
 
-  <div className="relative">
-    <input
-      type={showConfirmPassword ? "text" : "password"}
-      name="confirmPassword"
-      value={formData.confirmPassword}
-      onChange={handleChange}
-      placeholder="Confirm your password"
-      required
-      className="w-full rounded-xl border border-slate-300 py-3 pl-4 pr-12 outline-none transition hover:border-blue-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-    />
+          <div>
+            <label className="mb-2 block font-medium text-slate-700">
+              Confirm Password
+            </label>
 
-    <button
-      type="button"
-      onClick={() =>
-        setShowConfirmPassword(!showConfirmPassword)
-      }
-      className="absolute inset-y-0 right-4 flex items-center text-slate-500 hover:text-blue-600"
-    >
-      {showConfirmPassword ? (
-        <EyeOff size={20} />
-      ) : (
-        <Eye size={20} />
-      )}
-    </button>
-  </div>
-</div>
+            <div className="relative">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirm your password"
+                required
+                className="w-full rounded-xl border border-slate-300 py-3 pl-4 pr-12 outline-none transition hover:border-blue-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+              />
+
+              <button
+                type="button"
+                onClick={() =>
+                  setShowConfirmPassword(!showConfirmPassword)
+                }
+                className="absolute inset-y-0 right-4 flex items-center text-slate-500 hover:text-blue-600"
+              >
+                {showConfirmPassword ? (
+                  <EyeOff size={20} />
+                ) : (
+                  <Eye size={20} />
+                )}
+              </button>
+            </div>
+          </div>
+
           <button
-  type="submit"
-  disabled={loading}
-  className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 text-lg font-semibold text-white transition hover:from-blue-700 hover:to-indigo-700 disabled:cursor-not-allowed disabled:opacity-70"
->
-  {loading ? "Creating Account..." : "Create Account"}
-</button>
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 text-lg font-semibold text-white transition hover:from-blue-700 hover:to-indigo-700 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {loading ? "Creating Account..." : "Create Account"}
+          </button>
 
         </form>
 

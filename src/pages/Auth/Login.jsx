@@ -3,7 +3,6 @@ import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 function Login() {
   const navigate = useNavigate();
 
@@ -15,7 +14,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleChange = (e) => {
     setError("");
@@ -34,7 +33,7 @@ const [rememberMe, setRememberMe] = useState(false);
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         formData
       );
 
@@ -57,8 +56,7 @@ const [rememberMe, setRememberMe] = useState(false);
 
         <div className="text-center">
           <h1 className="text-4xl font-bold text-slate-900">
-            Welcome Back 
-           
+            Welcome Back
           </h1>
 
           <p className="mt-3 text-slate-600">
@@ -91,57 +89,62 @@ const [rememberMe, setRememberMe] = useState(false);
           </div>
 
           <div>
-  <label className="mb-2 block font-medium text-slate-700">
-    Password
-  </label>
+            <label className="mb-2 block font-medium text-slate-700">
+              Password
+            </label>
 
-  <div className="relative">
-    <input
-      type={showPassword ? "text" : "password"}
-      name="password"
-      placeholder="Enter your password"
-      value={formData.password}
-      onChange={handleChange}
-      required
-      className="w-full rounded-xl border border-slate-300 py-3 pl-4 pr-12 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
-    />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="w-full rounded-xl border border-slate-300 py-3 pl-4 pr-12 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+              />
 
-    <button
-      type="button"
-      onClick={() => setShowPassword(!showPassword)}
-      className="absolute inset-y-0 right-4 flex items-center text-slate-500 hover:text-blue-600 transition"
-    >
-      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-    </button>
-  </div>
-</div>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-4 flex items-center text-slate-500 transition hover:text-blue-600"
+              >
+                {showPassword ? (
+                  <EyeOff size={20} />
+                ) : (
+                  <Eye size={20} />
+                )}
+              </button>
+            </div>
+          </div>
 
           <div className="flex items-center justify-between">
-  <label className="flex items-center gap-2 text-sm text-slate-600">
-    <input
-      type="checkbox"
-      checked={rememberMe}
-      onChange={(e) => setRememberMe(e.target.checked)}
-      className="h-4 w-4"
-    />
-    Remember Me
-  </label>
+            <label className="flex items-center gap-2 text-sm text-slate-600">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="h-4 w-4"
+              />
+              Remember Me
+            </label>
 
-  <Link
-    to="/forgot-password"
-    className="text-sm font-medium text-blue-600 hover:text-blue-700"
-  >
-    Forgot Password?
-  </Link>
-</div>
+            <Link
+              to="/forgot-password"
+              className="text-sm font-medium text-blue-600 hover:text-blue-700"
+            >
+              Forgot Password?
+            </Link>
+          </div>
 
-         <button
-  type="submit"
-  disabled={loading}
-  className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 text-lg font-semibold text-white transition hover:from-blue-700 hover:to-indigo-700 disabled:cursor-not-allowed disabled:opacity-70"
->
-  {loading ? "Creating Account..." : "Create Account"}
-</button>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-3 text-lg font-semibold text-white transition hover:from-blue-700 hover:to-indigo-700 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {loading ? "Logging In..." : "Login"}
+          </button>
+
         </form>
 
         <p className="mt-8 text-center text-slate-600">
