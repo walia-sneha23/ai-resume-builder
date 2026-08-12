@@ -16,7 +16,6 @@ const app = express();
 // ==============================
 // CORS
 // ==============================
-
 app.use(
   cors({
     origin: true,
@@ -25,21 +24,38 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 app.options(/.*/, cors());
+
+// ==============================
+// Body Parser
+// ==============================
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // ==============================
+// REQUEST LOGGER - TEMPORARY
+// ==============================
+app.use((req, res, next) => {
+  console.log("=================================");
+  console.log("REQUEST RECEIVED");
+  console.log("Method:", req.method);
+  console.log("URL:", req.originalUrl);
+  console.log("Origin:", req.headers.origin || "No Origin");
+  console.log("=================================");
+
+  next();
+});
+
+// ==============================
 // Connect MongoDB
 // ==============================
-
 connectDB();
 
 // ==============================
 // Routes
 // ==============================
-
 app.use("/api/auth", authRoutes);
 app.use("/api/resumes", resumeRoutes);
 app.use("/api/ai", aiRoutes);
@@ -48,7 +64,6 @@ app.use("/api/pdf", pdfRoutes);
 // ==============================
 // Home Route
 // ==============================
-
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
@@ -59,7 +74,6 @@ app.get("/", (req, res) => {
 // ==============================
 // 404 Route
 // ==============================
-
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -70,7 +84,6 @@ app.use((req, res) => {
 // ==============================
 // Start Server
 // ==============================
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, "0.0.0.0", () => {
