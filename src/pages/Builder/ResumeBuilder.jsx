@@ -1,8 +1,8 @@
+```jsx
 import { useState } from "react";
 
 import BuilderHeader from "../../components/builder/BuilderHeader";
 import BuilderSidebar from "../../components/builder/BuilderSidebar";
-
 import PersonalInfo from "../../components/builder/PersonalInfo";
 import EducationForm from "../../components/builder/EducationForm";
 import ExperienceForm from "../../components/builder/ExperienceForm";
@@ -10,7 +10,6 @@ import SkillsForm from "../../components/builder/SkillsForm";
 import ProjectsForm from "../../components/builder/ProjectsForm";
 import CertificationsForm from "../../components/builder/CertificationsForm";
 import LanguagesForm from "../../components/builder/LanguagesForm";
-
 import ResumePreview from "../../components/builder/ResumePreview";
 
 function ResumeBuilder() {
@@ -109,9 +108,13 @@ function ResumeBuilder() {
 
         {/* ========================================
             Live Resume Preview
+
+            Hidden on laptop-sized screens so the
+            form gets enough width. It becomes
+            visible on larger desktop screens.
         ======================================== */}
 
-        <div className="hidden w-full min-w-0 shrink-0 xl:block xl:w-[380px] 2xl:w-[420px]">
+        <div className="hidden w-full min-w-0 shrink-0 2xl:block 2xl:w-[420px]">
           <ResumePreview />
         </div>
       </div>
@@ -166,3 +169,4 @@ function ResumeBuilder() {
 }
 
 export default ResumeBuilder;
+```
