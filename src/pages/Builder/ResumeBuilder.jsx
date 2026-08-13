@@ -1,4 +1,4 @@
-```jsx
+
 import { useState } from "react";
 
 import BuilderHeader from "../../components/builder/BuilderHeader";
@@ -12,12 +12,9 @@ import CertificationsForm from "../../components/builder/CertificationsForm";
 import LanguagesForm from "../../components/builder/LanguagesForm";
 import ResumePreview from "../../components/builder/ResumePreview";
 
-function ResumeBuilder() {
-  const [activeSection, setActiveSection] =
-    useState("personal");
-
-  const [showPreview, setShowPreview] =
-    useState(false);
+export default function ResumeBuilder() {
+  const [activeSection, setActiveSection] = useState("personal");
+  const [showPreview, setShowPreview] = useState(false);
 
   return (
     <div className="min-h-screen min-w-0 bg-slate-100">
@@ -25,9 +22,7 @@ function ResumeBuilder() {
           Builder Header
       ========================================== */}
 
-      <BuilderHeader
-        onPreview={() => setShowPreview(true)}
-      />
+      <BuilderHeader onPreview={() => setShowPreview(true)} />
 
       {/* ==========================================
           Main Builder Area
@@ -35,7 +30,7 @@ function ResumeBuilder() {
 
       <div className="mx-auto flex w-full min-w-0 max-w-[1800px] flex-col gap-4 p-3 sm:gap-5 sm:p-5 md:gap-6 md:p-6 lg:flex-row">
         {/* ========================================
-            Sidebar
+            Builder Sidebar
         ======================================== */}
 
         <BuilderSidebar
@@ -44,74 +39,45 @@ function ResumeBuilder() {
         />
 
         {/* ========================================
-            Forms
+            Builder Forms
         ======================================== */}
 
         <div className="min-w-0 flex-1">
           {activeSection === "personal" && (
-            <PersonalInfo
-              setActiveSection={
-                setActiveSection
-              }
-            />
+            <PersonalInfo setActiveSection={setActiveSection} />
           )}
 
           {activeSection === "education" && (
-            <EducationForm
-              setActiveSection={
-                setActiveSection
-              }
-            />
+            <EducationForm setActiveSection={setActiveSection} />
           )}
 
           {activeSection === "experience" && (
-            <ExperienceForm
-              setActiveSection={
-                setActiveSection
-              }
-            />
+            <ExperienceForm setActiveSection={setActiveSection} />
           )}
 
           {activeSection === "skills" && (
-            <SkillsForm
-              setActiveSection={
-                setActiveSection
-              }
-            />
+            <SkillsForm setActiveSection={setActiveSection} />
           )}
 
           {activeSection === "projects" && (
-            <ProjectsForm
-              setActiveSection={
-                setActiveSection
-              }
-            />
+            <ProjectsForm setActiveSection={setActiveSection} />
           )}
 
-          {activeSection ===
-            "certifications" && (
-            <CertificationsForm
-              setActiveSection={
-                setActiveSection
-              }
-            />
+          {activeSection === "certifications" && (
+            <CertificationsForm setActiveSection={setActiveSection} />
           )}
 
           {activeSection === "languages" && (
-            <LanguagesForm
-              setActiveSection={
-                setActiveSection
-              }
-            />
+            <LanguagesForm setActiveSection={setActiveSection} />
           )}
         </div>
 
         {/* ========================================
             Live Resume Preview
 
-            Hidden on laptop-sized screens so the
-            form gets enough width. It becomes
-            visible on larger desktop screens.
+            Hidden until large desktop so that
+            laptop screens have enough width for
+            the builder form.
         ======================================== */}
 
         <div className="hidden w-full min-w-0 shrink-0 2xl:block 2xl:w-[420px]">
@@ -143,9 +109,7 @@ function ResumeBuilder() {
 
               <button
                 type="button"
-                onClick={() =>
-                  setShowPreview(false)
-                }
+                onClick={() => setShowPreview(false)}
                 className="flex min-h-10 w-full shrink-0 items-center justify-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 sm:w-auto"
               >
                 ✕ Close
@@ -153,7 +117,7 @@ function ResumeBuilder() {
             </div>
 
             {/* ====================================
-                Resume
+                Resume Preview
             ==================================== */}
 
             <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-5 md:p-8">
@@ -168,5 +132,3 @@ function ResumeBuilder() {
   );
 }
 
-export default ResumeBuilder;
-```
