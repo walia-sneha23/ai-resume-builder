@@ -78,9 +78,12 @@ export const generateSummary = async (
     }
 
     const prompt = `
-You are an expert professional resume writer.
+You are an expert professional resume writer specializing in ATS-friendly resumes.
 
-Create a professional ATS-friendly resume summary.
+IMPORTANT ROLE ACCURACY RULE:
+The provided Job Role is the SOURCE OF TRUTH.
+You MUST write the summary strictly for the provided Job Role.
+NEVER change, reinterpret, replace, or assume a different career field or profession.
 
 Job Role:
 ${jobRole}
@@ -97,12 +100,17 @@ ${
 
 Requirements:
 - Write 80-120 words.
-- Make it professional and natural.
-- Focus on relevant technical skills.
-- Highlight experience and strengths.
-- Do not invent companies, degrees, certifications or achievements.
+- Make it professional, natural, and ATS-friendly.
+- Keep the candidate's Job Role exactly aligned with the provided Job Role.
+- Focus on skills, experience, responsibilities, and strengths relevant to the provided Job Role.
+- Use technical terminology appropriate for the provided Job Role.
+- Do NOT assume a career transition unless it is explicitly provided in the input.
+- Do NOT change a non-IT/engineering/business/medical/etc. role into a software or IT role.
+- Do NOT introduce technologies merely because they appear in the skills list if they are not relevant to the Job Role.
+- Do not invent companies, degrees, certifications, achievements, responsibilities, or experience.
+- Do not add a different profession or career path.
 - Avoid generic filler.
-- Use ATS-friendly keywords.
+- Use relevant ATS keywords naturally.
 - Return ONLY the summary text.
 `;
 
@@ -131,7 +139,6 @@ Requirements:
     });
   }
 };
-
 // ==========================================
 // Generate AI Skills
 // ==========================================
@@ -160,7 +167,10 @@ export const generateSkills = async (
     const prompt = `
 You are an expert ATS resume writer.
 
-Generate relevant skills for:
+IMPORTANT ROLE ACCURACY RULE:
+The provided Job Role is the SOURCE OF TRUTH.
+Generate skills strictly relevant to that Job Role.
+NEVER replace, reinterpret, or change the Job Role into another profession or career field.
 
 Job Role:
 ${jobRole}
@@ -197,8 +207,12 @@ Use exactly this format:
 }
 
 Rules:
-- Skills must be relevant to the job role.
-- Do not invent unrealistic technologies.
+- Every skill must be relevant to the provided Job Role.
+- Prefer standard, industry-recognized skills for that profession.
+- Do not add unrelated software/IT technologies just because they are popular.
+- Do not infer a career transition.
+- Do not change the profession based on assumptions.
+- Do not invent unrealistic technologies or qualifications.
 - Return JSON only.
 `;
 
@@ -272,11 +286,14 @@ ${techStack}
 
 Requirements:
 - Write 4 concise professional sentences.
-- Focus on what the project does.
-- Mention technologies naturally.
+- Clearly describe what the project does.
+- Mention the provided technologies naturally.
 - Mention useful technical contributions.
+- Keep the description relevant to the actual project.
 - Do not invent fake statistics.
-- Keep it concise enough for a resume.
+- Do not invent features, technologies, achievements, or responsibilities that were not provided.
+- Do not change the project type or assume an unrelated career field.
+- Keep it concise and suitable for a professional resume.
 - Return ONLY the description.
 `;
 
@@ -334,7 +351,10 @@ export const generateExperience =
       const prompt = `
 You are an expert ATS Resume Writer.
 
-Generate exactly 5 professional resume experience bullet points.
+IMPORTANT ROLE ACCURACY RULE:
+The provided Job Role is the SOURCE OF TRUTH.
+Generate experience bullet points strictly for that Job Role.
+NEVER change, reinterpret, replace, or assume a different profession or career field.
 
 Job Role:
 ${jobRole}
@@ -345,14 +365,17 @@ ${company}
 Experience Level:
 ${experienceLevel}
 
-Rules:
-- Exactly 5 bullet points.
+Requirements:
+- Generate exactly 5 professional resume experience bullet points.
 - Start each point with a strong action verb.
-- ATS friendly.
-- Mention technologies only when relevant.
+- Keep every bullet strictly relevant to the provided Job Role.
+- Mention tools, technologies, processes, equipment, methods, or responsibilities only when relevant to that profession.
+- Do not introduce unrelated software/IT responsibilities.
+- Do not assume a career transition.
 - Do not invent fake statistics.
+- Do not invent responsibilities, projects, achievements, qualifications, or experience.
 - Keep each point between 18-25 words.
-- Keep the content concise.
+- Keep the content concise and ATS-friendly.
 - Return plain text only.
 `;
 
@@ -378,76 +401,6 @@ Rules:
         message:
           error.message ||
           "Failed to generate experience.",
-      });
-    }
-  };
-
-// ==========================================
-// Generate AI Achievements
-// ==========================================
-
-export const generateAchievements =
-  async (req, res) => {
-    try {
-      const {
-        jobRole,
-        experienceLevel,
-      } = req.body;
-
-      if (
-        !jobRole ||
-        !experienceLevel
-      ) {
-        return res.status(400).json({
-          success: false,
-          message:
-            "Please provide jobRole and experienceLevel.",
-        });
-      }
-
-      const prompt = `
-You are an expert ATS Resume Writer.
-
-Generate exactly 5 professional resume achievements.
-
-Job Role:
-${jobRole}
-
-Experience Level:
-${experienceLevel}
-
-Rules:
-- Exactly 5 bullet points.
-- Start each point with a strong action verb.
-- ATS friendly.
-- Highlight measurable impact only when information supports it.
-- Never invent fake statistics.
-- Keep each point between 15-25 words.
-- Return plain text only.
-`;
-
-      const achievements =
-        await generateAI(prompt);
-
-      return res.status(200).json({
-        success: true,
-        achievements,
-      });
-    } catch (error) {
-      console.error(
-        "GENERATE ACHIEVEMENTS ERROR:",
-        error
-      );
-
-      return res.status(
-        error.status === 429
-          ? 429
-          : 500
-      ).json({
-        success: false,
-        message:
-          error.message ||
-          "Failed to generate achievements.",
       });
     }
   };
@@ -484,7 +437,10 @@ export const generateCoverLetter =
       const prompt = `
 You are an expert professional cover letter writer.
 
-Write a professional cover letter.
+IMPORTANT ROLE ACCURACY RULE:
+The provided Job Role is the SOURCE OF TRUTH.
+Write the cover letter strictly for that Job Role.
+NEVER change, reinterpret, replace, or assume a different profession or career field.
 
 Candidate Name:
 ${fullName}
@@ -508,9 +464,12 @@ ${
 Requirements:
 - Around 250-300 words.
 - Professional tone.
-- Mention relevant skills naturally.
-- Do not invent achievements.
-- Show genuine interest in the role.
+- Keep the entire letter aligned with the provided Job Role.
+- Mention only skills relevant to the provided Job Role.
+- Do not introduce unrelated technologies or a different career field.
+- Do not assume a career transition unless explicitly stated.
+- Do not invent achievements, experience, qualifications, or responsibilities.
+- Show genuine interest in the role without making unsupported claims.
 - End with a professional closing.
 - Return ONLY the cover letter.
 `;
@@ -540,7 +499,6 @@ Requirements:
       });
     }
   };
-
 // ==========================================
 // ATS Resume Analyzer
 // ==========================================
@@ -573,9 +531,13 @@ export const analyzeATS = async (
     }
 
     const prompt = `
-You are an ATS Resume Expert.
+You are an expert ATS Resume Analyzer.
 
-Analyze this resume for:
+IMPORTANT ROLE ACCURACY RULE:
+The provided Job Role is the SOURCE OF TRUTH.
+Evaluate the resume against that exact Job Role only.
+NEVER judge the candidate against a different profession or career field.
+NEVER assume a career transition that is not explicitly provided.
 
 Job Role:
 ${jobRole}
@@ -619,6 +581,11 @@ Return ONLY valid JSON in this exact format:
 
 Rules:
 - Score must be a number from 0 to 100.
+- Evaluate the resume only against the provided Job Role.
+- Evaluate skills, experience, projects, summary, and keywords based on that exact profession.
+- Do not penalize the resume for not containing skills from an unrelated profession.
+- Do not suggest unrelated software/IT keywords for a non-IT role.
+- Do not invent missing facts.
 - Do not return markdown.
 - Do not return explanations.
 - Return JSON only.
