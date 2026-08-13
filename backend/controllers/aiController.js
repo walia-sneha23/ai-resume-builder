@@ -322,6 +322,81 @@ Requirements:
       });
     }
   };
+  // ==========================================
+// Generate AI Achievements
+// ==========================================
+
+export const generateAchievements =
+  async (req, res) => {
+    try {
+      const {
+        jobRole,
+        experienceLevel,
+      } = req.body;
+
+      if (
+        !jobRole ||
+        !experienceLevel
+      ) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Please provide jobRole and experienceLevel.",
+        });
+      }
+
+      const prompt = `
+You are an expert ATS Resume Writer.
+
+IMPORTANT ROLE ACCURACY RULE:
+The provided Job Role is the SOURCE OF TRUTH.
+Generate achievements strictly relevant to that Job Role.
+NEVER change, reinterpret, replace, or assume a different profession or career field.
+
+Job Role:
+${jobRole}
+
+Experience Level:
+${experienceLevel}
+
+Requirements:
+- Generate exactly 5 professional resume achievement bullet points.
+- Start each point with a strong action verb.
+- Keep every achievement strictly relevant to the provided Job Role.
+- Highlight measurable impact only when the provided information supports it.
+- Never invent fake statistics, awards, achievements, responsibilities, qualifications, or experience.
+- Do not assume a career transition.
+- Do not introduce unrelated software/IT achievements.
+- Keep each point between 15-25 words.
+- Keep the content concise and ATS-friendly.
+- Return plain text only.
+`;
+
+      const achievements =
+        await generateAI(prompt);
+
+      return res.status(200).json({
+        success: true,
+        achievements,
+      });
+    } catch (error) {
+      console.error(
+        "GENERATE ACHIEVEMENTS ERROR:",
+        error
+      );
+
+      return res.status(
+        error.status === 429
+          ? 429
+          : 500
+      ).json({
+        success: false,
+        message:
+          error.message ||
+          "Failed to generate achievements.",
+      });
+    }
+  };
 
 // ==========================================
 // Generate AI Experience
