@@ -99,7 +99,9 @@ function BuilderHeader({ onPreview }) {
 
   const getExperienceText = () => {
     if (
-      !Array.isArray(resumeData.experience) ||
+      !Array.isArray(
+        resumeData.experience
+      ) ||
       resumeData.experience.length === 0
     ) {
       return "Fresher";
@@ -436,25 +438,26 @@ function BuilderHeader({ onPreview }) {
   };
 
   return (
-    <header className="border-b border-slate-200 bg-white">
-      <div className="flex items-center justify-between px-6 py-5">
-
+    <header className="min-w-0 border-b border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+      <div className="flex min-w-0 flex-col gap-4 px-4 py-4 sm:px-5 sm:py-5 md:flex-row md:items-center md:justify-between md:px-6">
         {/* ================================= */}
         {/* Left */}
         {/* ================================= */}
 
-        <div>
-          <h1 className="text-2xl font-bold text-slate-800">
+        <div className="min-w-0">
+          <h1 className="text-2xl font-bold leading-tight text-slate-800 sm:text-3xl dark:text-white">
             Resume Builder
           </h1>
 
-          <p className="text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             Build an ATS-friendly resume with AI
           </p>
 
-          <p className="mt-1 text-sm font-medium text-blue-600">
+          <p className="mt-1 break-words text-sm font-medium text-blue-600">
             Selected Template:{" "}
-            {selectedTemplate}
+            <span className="font-semibold">
+              {selectedTemplate}
+            </span>
           </p>
         </div>
 
@@ -462,17 +465,16 @@ function BuilderHeader({ onPreview }) {
         {/* Right */}
         {/* ================================= */}
 
-        <div className="flex items-center gap-3">
-
+        <div className="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap md:w-auto md:shrink-0 md:items-center md:justify-end">
           {/* Preview */}
 
           <button
             type="button"
             onClick={onPreview}
-            className="flex items-center gap-2 rounded-xl border border-slate-300 px-4 py-2 font-medium text-slate-700 transition hover:bg-slate-100"
+            className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 font-medium text-slate-700 transition hover:bg-slate-100 sm:flex-1 md:w-auto md:flex-none dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
           >
             <Eye size={18} />
-            Preview
+            <span>Preview</span>
           </button>
 
           {/* AI Improve */}
@@ -481,7 +483,7 @@ function BuilderHeader({ onPreview }) {
             type="button"
             onClick={handleAIImprove}
             disabled={aiLoading}
-            className="flex items-center gap-2 rounded-xl bg-violet-600 px-4 py-2 font-medium text-white transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:bg-violet-400"
+            className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-4 py-2.5 font-medium text-white transition hover:bg-violet-700 disabled:cursor-not-allowed disabled:bg-violet-400 sm:flex-1 md:w-auto md:flex-none"
           >
             <Sparkles
               size={18}
@@ -492,9 +494,11 @@ function BuilderHeader({ onPreview }) {
               }
             />
 
-            {aiLoading
-              ? "Improving..."
-              : "AI Improve"}
+            <span>
+              {aiLoading
+                ? "Improving..."
+                : "AI Improve"}
+            </span>
           </button>
 
           {/* Save Resume */}
@@ -503,15 +507,16 @@ function BuilderHeader({ onPreview }) {
             type="button"
             onClick={handleSaveResume}
             disabled={loading}
-            className="flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400"
+            className="flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400 sm:flex-1 md:w-auto md:flex-none"
           >
             <Save size={18} />
 
-            {loading
-              ? "Saving..."
-              : "Save Resume"}
+            <span>
+              {loading
+                ? "Saving..."
+                : "Save Resume"}
+            </span>
           </button>
-
         </div>
       </div>
     </header>

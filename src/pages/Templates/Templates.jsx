@@ -47,7 +47,7 @@ const templates = [
 
 function MiniResumePreview({ template }) {
   const baseClass =
-    "h-full w-full bg-white p-5 text-[7px] leading-3 shadow-inner";
+    "h-full w-full bg-white p-4 sm:p-5 text-[7px] leading-3 shadow-inner";
 
   // ========================================
   // Modern
@@ -72,7 +72,6 @@ function MiniResumePreview({ template }) {
 
         <div className="grid grid-cols-3 gap-3">
           <div className="col-span-2 space-y-2">
-
             <div>
               <div className="mb-1 font-bold text-blue-700">
                 PROFESSIONAL SUMMARY
@@ -141,7 +140,6 @@ function MiniResumePreview({ template }) {
     return (
       <div className={baseClass}>
         <div className="mb-4 text-center">
-
           <div className="text-[13px] font-bold text-slate-800">
             YOUR NAME
           </div>
@@ -156,7 +154,6 @@ function MiniResumePreview({ template }) {
         </div>
 
         <div className="space-y-3">
-
           <div>
             <div className="mb-1 border-b border-slate-300 pb-1 font-bold">
               SUMMARY
@@ -208,7 +205,6 @@ function MiniResumePreview({ template }) {
         className={`${baseClass} bg-slate-50`}
       >
         <div className="mb-4 rounded-lg bg-purple-100 p-3">
-
           <div className="text-[13px] font-bold text-purple-800">
             YOUR NAME
           </div>
@@ -219,7 +215,6 @@ function MiniResumePreview({ template }) {
         </div>
 
         <div className="space-y-3">
-
           <div>
             <div className="font-bold text-purple-700">
               ABOUT ME
@@ -253,7 +248,7 @@ function MiniResumePreview({ template }) {
               SKILLS
             </div>
 
-            <div className="mt-1 flex gap-1">
+            <div className="mt-1 flex flex-wrap gap-1">
               <span className="rounded bg-purple-200 px-2 py-1">
                 React
               </span>
@@ -279,9 +274,7 @@ function MiniResumePreview({ template }) {
   if (template.name === "Corporate") {
     return (
       <div className={baseClass}>
-
         <div className="mb-3 border-b-4 border-slate-800 pb-3">
-
           <div className="text-[13px] font-bold text-slate-900">
             YOUR NAME
           </div>
@@ -292,7 +285,6 @@ function MiniResumePreview({ template }) {
         </div>
 
         <div className="space-y-3">
-
           {[
             "PROFESSIONAL SUMMARY",
             "PROFESSIONAL EXPERIENCE",
@@ -300,17 +292,14 @@ function MiniResumePreview({ template }) {
             "TECHNICAL SKILLS",
           ].map((section) => (
             <div key={section}>
-
               <div className="mb-1 font-bold text-slate-800">
                 {section}
               </div>
 
               <div className="h-2 w-full rounded bg-slate-100" />
               <div className="mt-1 h-2 w-5/6 rounded bg-slate-100" />
-
             </div>
           ))}
-
         </div>
       </div>
     );
@@ -323,9 +312,7 @@ function MiniResumePreview({ template }) {
   if (template.name === "ATS Friendly") {
     return (
       <div className={baseClass}>
-
         <div className="mb-3 text-center">
-
           <div className="text-[13px] font-bold">
             YOUR NAME
           </div>
@@ -336,7 +323,6 @@ function MiniResumePreview({ template }) {
         </div>
 
         <div className="space-y-3">
-
           {[
             "SUMMARY",
             "SKILLS",
@@ -345,17 +331,14 @@ function MiniResumePreview({ template }) {
             "EDUCATION",
           ].map((section) => (
             <div key={section}>
-
               <div className="mb-1 border-b border-slate-400 pb-1 font-bold">
                 {section}
               </div>
 
               <div className="h-2 w-full rounded bg-slate-100" />
               <div className="mt-1 h-2 w-4/5 rounded bg-slate-100" />
-
             </div>
           ))}
-
         </div>
       </div>
     );
@@ -367,9 +350,7 @@ function MiniResumePreview({ template }) {
 
   return (
     <div className={baseClass}>
-
       <div className="mb-4 text-center">
-
         <div className="text-[13px] font-bold text-slate-900">
           YOUR NAME
         </div>
@@ -379,11 +360,9 @@ function MiniResumePreview({ template }) {
         </div>
 
         <div className="mx-auto mt-1 h-1 w-24 rounded bg-slate-800" />
-
       </div>
 
       <div className="space-y-3">
-
         <div>
           <div className="mb-1 font-bold">
             PROFESSIONAL SUMMARY
@@ -419,7 +398,6 @@ function MiniResumePreview({ template }) {
 
           <div className="h-2 w-2/3 rounded bg-slate-100" />
         </div>
-
       </div>
     </div>
   );
@@ -468,36 +446,30 @@ function Templates() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 p-6">
-
-      <div className="mx-auto max-w-7xl rounded-3xl bg-slate-50 p-8 shadow-sm">
-
+    <div className="min-h-screen min-w-0 bg-slate-100 p-3 sm:p-5 md:p-6">
+      <div className="mx-auto w-full max-w-7xl rounded-3xl bg-slate-50 p-4 shadow-sm sm:p-6 md:p-8">
         {/* ================================== */}
         {/* Header */}
         {/* ================================== */}
 
-        <div className="mb-10 text-center">
-
-          <h1 className="text-4xl font-bold text-slate-800">
+        <div className="mb-7 text-center sm:mb-10">
+          <h1 className="text-3xl font-bold leading-tight text-slate-800 sm:text-4xl">
             Choose Resume Template
           </h1>
 
-          <p className="mt-3 text-slate-500">
-            Select your favorite resume
-            template to get started.
+          <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-500 sm:text-base">
+            Select your favorite resume template
+            to get started.
           </p>
-
         </div>
 
         {/* ================================== */}
         {/* Templates */}
         {/* ================================== */}
 
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-
+        <div className="grid min-w-0 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
           {templates.map(
             (template) => {
-
               const isSelected =
                 selectedTemplate ===
                 template.name;
@@ -505,54 +477,43 @@ function Templates() {
               return (
                 <div
                   key={template.id}
-                  className={`overflow-hidden rounded-3xl bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-xl ${
+                  className={`min-w-0 overflow-hidden rounded-3xl bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl ${
                     isSelected
                       ? "ring-2 ring-blue-600"
                       : ""
                   }`}
                 >
-
                   {/* Preview */}
-                  <div className="flex h-72 items-center justify-center overflow-hidden bg-slate-200 p-5">
-
-                    <MiniResumePreview
-                      template={
-                        template
-                      }
-                    />
-
+                  <div className="flex h-64 items-center justify-center overflow-hidden bg-slate-200 p-4 sm:h-72 sm:p-5">
+                    <div className="h-full w-full min-w-0">
+                      <MiniResumePreview
+                        template={template}
+                      />
+                    </div>
                   </div>
 
                   {/* Content */}
-                  <div className="p-6">
-
-                    <div className="flex items-start justify-between gap-3">
-
-                      <div>
-
-                        <h2 className="text-2xl font-bold text-slate-800">
+                  <div className="p-4 sm:p-6">
+                    <div className="flex min-w-0 items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <h2 className="text-xl font-bold text-slate-800 sm:text-2xl">
                           {template.name}
                         </h2>
 
-                        <p className="mt-2 text-slate-500">
-                          {
-                            template.description
-                          }
+                        <p className="mt-2 text-sm leading-5 text-slate-500 sm:text-base">
+                          {template.description}
                         </p>
-
                       </div>
 
                       {isSelected && (
-                        <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+                        <span className="shrink-0 rounded-full bg-green-100 px-2.5 py-1 text-[10px] font-semibold text-green-700 sm:px-3 sm:text-xs">
                           Selected
                         </span>
                       )}
-
                     </div>
 
                     {/* Buttons */}
-                    <div className="mt-6 flex gap-3">
-
+                    <div className="mt-5 flex flex-col gap-3 sm:mt-6 sm:flex-row">
                       <button
                         type="button"
                         onClick={() =>
@@ -560,7 +521,7 @@ function Templates() {
                             template
                           )
                         }
-                        className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-300 py-3 font-medium text-slate-700 transition hover:bg-slate-100"
+                        className="flex min-h-11 w-full flex-1 items-center justify-center gap-2 rounded-xl border border-slate-300 px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 sm:text-base"
                       >
                         <Eye size={18} />
                         Preview
@@ -573,7 +534,7 @@ function Templates() {
                             template
                           )
                         }
-                        className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-medium text-white transition hover:bg-blue-700"
+                        className="flex min-h-11 w-full flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white transition hover:bg-blue-700 sm:text-base"
                       >
                         <CheckCircle
                           size={18}
@@ -583,15 +544,12 @@ function Templates() {
                           ? "Selected"
                           : "Use"}
                       </button>
-
                     </div>
-
                   </div>
                 </div>
               );
             }
           )}
-
         </div>
       </div>
 
@@ -600,10 +558,8 @@ function Templates() {
       ========================================== */}
 
       {previewTemplate && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 p-6">
-
-          <div className="relative max-h-[90vh] w-full max-w-4xl overflow-auto rounded-3xl bg-white p-6 shadow-2xl">
-
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 p-3 sm:p-6">
+          <div className="relative max-h-[92vh] w-full max-w-4xl overflow-auto rounded-3xl bg-white p-4 shadow-2xl sm:max-h-[90vh] sm:p-6">
             {/* Close */}
 
             <button
@@ -613,54 +569,42 @@ function Templates() {
                   null
                 )
               }
-              className="absolute right-5 top-5 rounded-full bg-slate-100 p-2 text-slate-600 transition hover:bg-slate-200"
+              className="absolute right-3 top-3 rounded-full bg-slate-100 p-2 text-slate-600 transition hover:bg-slate-200 sm:right-5 sm:top-5"
             >
               <X size={20} />
             </button>
 
             {/* Header */}
 
-            <div className="mb-6 pr-12">
-
-              <h2 className="text-2xl font-bold text-slate-800">
-                {
-                  previewTemplate.name
-                }{" "}
+            <div className="mb-5 pr-10 sm:mb-6 sm:pr-12">
+              <h2 className="text-xl font-bold text-slate-800 sm:text-2xl">
+                {previewTemplate.name}{" "}
                 Template
               </h2>
 
-              <p className="mt-1 text-slate-500">
-                {
-                  previewTemplate.description
-                }
+              <p className="mt-1 text-sm leading-5 text-slate-500 sm:text-base">
+                {previewTemplate.description}
               </p>
-
             </div>
 
             {/* Large Preview */}
 
-            <div className="mx-auto max-w-2xl rounded-xl bg-slate-100 p-8">
-
+            <div className="mx-auto max-w-2xl rounded-xl bg-slate-100 p-3 sm:p-6 md:p-8">
               <div className="mx-auto aspect-[8.5/11] w-full max-w-xl overflow-hidden shadow-xl">
-
                 <MiniResumePreview
                   template={
                     previewTemplate
                   }
                 />
-
               </div>
-
             </div>
 
             {/* Modal Button */}
 
-            <div className="mt-6 flex justify-end">
-
+            <div className="mt-5 flex justify-stretch sm:mt-6 sm:justify-end">
               <button
                 type="button"
                 onClick={() => {
-
                   handleUseTemplate(
                     previewTemplate
                   );
@@ -669,21 +613,17 @@ function Templates() {
                     null
                   );
                 }}
-                className="flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 sm:w-auto sm:text-base"
               >
                 <CheckCircle
                   size={18}
                 />
-
                 Use This Template
               </button>
-
             </div>
-
           </div>
         </div>
       )}
-
     </div>
   );
 }

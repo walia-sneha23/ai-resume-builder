@@ -14,129 +14,153 @@ import LanguagesForm from "../../components/builder/LanguagesForm";
 import ResumePreview from "../../components/builder/ResumePreview";
 
 function ResumeBuilder() {
-  const [activeSection, setActiveSection] = useState("personal");
+  const [activeSection, setActiveSection] =
+    useState("personal");
 
-  const [showPreview, setShowPreview] = useState(false);
+  const [showPreview, setShowPreview] =
+    useState(false);
 
   return (
-    <div className="relative min-h-screen bg-slate-100">
+    <div className="min-h-screen min-w-0 bg-slate-100">
+      {/* ==========================================
+          Builder Header
+      ========================================== */}
 
-      {/* Builder Header */}
       <BuilderHeader
         onPreview={() => setShowPreview(true)}
       />
 
-      {/* Main Builder Area */}
-      <div className="mt-16 flex w-full gap-6 p-6">
+      {/* ==========================================
+          Main Builder Area
+      ========================================== */}
 
-        {/* Sidebar */}
+      <div className="mx-auto flex w-full min-w-0 max-w-[1800px] flex-col gap-4 p-3 sm:gap-5 sm:p-5 md:gap-6 md:p-6 lg:flex-row">
+        {/* ========================================
+            Sidebar
+        ======================================== */}
+
         <BuilderSidebar
           activeSection={activeSection}
           setActiveSection={setActiveSection}
         />
 
-        {/* Forms */}
-        <div className="min-w-0 flex-1">
+        {/* ========================================
+            Forms
+        ======================================== */}
 
+        <div className="min-w-0 flex-1">
           {activeSection === "personal" && (
             <PersonalInfo
-              setActiveSection={setActiveSection}
+              setActiveSection={
+                setActiveSection
+              }
             />
           )}
 
           {activeSection === "education" && (
             <EducationForm
-              setActiveSection={setActiveSection}
+              setActiveSection={
+                setActiveSection
+              }
             />
           )}
 
           {activeSection === "experience" && (
             <ExperienceForm
-              setActiveSection={setActiveSection}
+              setActiveSection={
+                setActiveSection
+              }
             />
           )}
 
           {activeSection === "skills" && (
             <SkillsForm
-              setActiveSection={setActiveSection}
+              setActiveSection={
+                setActiveSection
+              }
             />
           )}
 
           {activeSection === "projects" && (
             <ProjectsForm
-              setActiveSection={setActiveSection}
+              setActiveSection={
+                setActiveSection
+              }
             />
           )}
 
-          {activeSection === "certifications" && (
+          {activeSection ===
+            "certifications" && (
             <CertificationsForm
-              setActiveSection={setActiveSection}
+              setActiveSection={
+                setActiveSection
+              }
             />
           )}
 
           {activeSection === "languages" && (
             <LanguagesForm
-              setActiveSection={setActiveSection}
+              setActiveSection={
+                setActiveSection
+              }
             />
           )}
-
         </div>
 
-        {/* Live Resume Preview */}
-        <div className="hidden w-[420px] xl:block">
+        {/* ========================================
+            Live Resume Preview
+        ======================================== */}
+
+        <div className="hidden w-full min-w-0 shrink-0 xl:block xl:w-[380px] 2xl:w-[420px]">
           <ResumePreview />
         </div>
-
       </div>
 
-      {/* ============================= */}
-      {/* Full Resume Preview Modal */}
-      {/* ============================= */}
+      {/* ==========================================
+          Full Resume Preview Modal
+      ========================================== */}
 
       {showPreview && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-2 sm:p-4 md:p-6">
+          <div className="relative flex h-[96vh] w-full min-w-0 max-w-5xl flex-col overflow-hidden rounded-2xl bg-slate-100 shadow-2xl sm:h-[94vh]">
+            {/* ====================================
+                Modal Header
+            ==================================== */}
 
-          <div className="relative flex h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-slate-100 shadow-2xl">
-
-            {/* Modal Header */}
-            <div className="flex items-center justify-between border-b bg-white px-6 py-4">
-
-              <div>
-                <h2 className="text-xl font-bold text-slate-800">
+            <div className="flex shrink-0 flex-col gap-3 border-b bg-white px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+              <div className="min-w-0">
+                <h2 className="text-lg font-bold text-slate-800 sm:text-xl">
                   Resume Preview
                 </h2>
 
-                <p className="text-sm text-slate-500">
+                <p className="mt-0.5 text-xs text-slate-500 sm:text-sm">
                   Preview your professional resume
                 </p>
               </div>
 
               <button
                 type="button"
-                onClick={() => setShowPreview(false)}
-                className="rounded-xl border border-slate-300 px-4 py-2 font-medium text-slate-700 transition hover:bg-slate-100"
+                onClick={() =>
+                  setShowPreview(false)
+                }
+                className="flex min-h-10 w-full shrink-0 items-center justify-center rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100 sm:w-auto"
               >
                 ✕ Close
               </button>
-
             </div>
 
-            {/* Resume */}
-            <div className="flex-1 overflow-y-auto p-8">
+            {/* ====================================
+                Resume
+            ==================================== */}
 
-              <div className="mx-auto max-w-3xl rounded-xl bg-white p-8 shadow-lg">
-
+            <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden p-3 sm:p-5 md:p-8">
+              <div className="mx-auto w-full max-w-3xl rounded-xl bg-white p-3 shadow-lg sm:p-5 md:p-8">
                 <ResumePreview />
-
               </div>
-
             </div>
-
           </div>
-
         </div>
       )}
-
     </div>
   );
 }
