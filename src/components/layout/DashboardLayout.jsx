@@ -25,7 +25,7 @@ function DashboardLayout() {
         <Sidebar />
 
         {/* Main Content */}
-        <div className="flex flex-1 flex-col lg:ml-72">
+        <div className="flex min-w-0 flex-1 flex-col md:ml-72">
           {/* Navbar */}
           <DashboardNavbar
             darkMode={darkMode}
@@ -33,8 +33,8 @@ function DashboardLayout() {
           />
 
           {/* Page */}
-          <main className="flex-1 overflow-y-auto p-6">
-            <div className="rounded-3xl border border-white/20 bg-white/70 p-6 shadow-2xl backdrop-blur-xl transition-all duration-500 dark:border-slate-700 dark:bg-slate-900/70">
+          <main className="flex-1 overflow-y-auto px-4 pb-6 pt-20 sm:px-5 md:px-6 md:pt-6">
+            <div className="min-w-0 rounded-3xl border border-white/20 bg-white/70 p-4 shadow-2xl backdrop-blur-xl transition-all duration-500 sm:p-5 md:p-6 dark:border-slate-700 dark:bg-slate-900/70">
               <Outlet />
             </div>
           </main>

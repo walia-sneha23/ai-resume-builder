@@ -17,7 +17,9 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const API_URL = import.meta.env.VITE_API_URL;
+
 function DashboardNavbar({ darkMode, setDarkMode }) {
   const navigate = useNavigate();
 
@@ -114,7 +116,7 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
         }
 
         const response = await axios.get(
-  `${API_URL}/api/resumes`,
+          `${API_URL}/api/resumes`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -294,20 +296,20 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
   };
 
   return (
-    <header className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-4 transition-colors duration-300 dark:border-slate-700 dark:bg-slate-900">
+    <header className="flex min-w-0 items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 py-3 pl-16 transition-colors duration-300 sm:px-5 md:px-6 md:py-4 md:pl-6 dark:border-slate-700 dark:bg-slate-900">
       {/* Left */}
-      <div>
-        <h1 className="text-xl font-bold text-slate-800 dark:text-white">
+      <div className="min-w-0 flex-1">
+        <h1 className="truncate text-lg font-bold text-slate-800 sm:text-xl dark:text-white">
           Dashboard
         </h1>
 
-        <p className="text-sm text-slate-500 dark:text-slate-400">
+        <p className="hidden text-sm text-slate-500 sm:block dark:text-slate-400">
           Welcome back 👋
         </p>
       </div>
 
       {/* Right */}
-      <div className="flex items-center gap-3">
+      <div className="flex shrink-0 items-center gap-2 sm:gap-3">
         {/* ====================================== */}
         {/* Search */}
         {/* ====================================== */}
@@ -333,9 +335,8 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
           />
 
           {/* Search Results */}
-
           {search.trim() && (
-            <div className="absolute right-0 top-12 z-50 w-80 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
+            <div className="absolute right-0 top-12 z-50 w-[calc(100vw-2rem)] max-w-80 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
               <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-slate-700">
                 <h3 className="text-sm font-semibold text-slate-800 dark:text-white">
                   Search Results
@@ -417,7 +418,6 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
         </div>
 
         {/* Dark Mode Button */}
-
         <button
           type="button"
           onClick={() =>
@@ -428,7 +428,7 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
               ? "Switch to light mode"
               : "Switch to dark mode"
           }
-          className="rounded-xl bg-slate-100 p-3 text-slate-700 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-700 transition hover:bg-slate-200 sm:h-11 sm:w-11 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
         >
           {darkMode ? (
             <Sun size={18} />
@@ -438,7 +438,6 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
         </button>
 
         {/* Notifications */}
-
         <div
           ref={notificationRef}
           className="relative"
@@ -453,7 +452,7 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
               setSearchResults([]);
             }}
             title="Notifications"
-            className="relative rounded-xl bg-slate-100 p-3 text-slate-700 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+            className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-700 transition hover:bg-slate-200 sm:h-11 sm:w-11 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
           >
             <Bell size={18} />
 
@@ -461,7 +460,7 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
           </button>
 
           {showNotifications && (
-            <div className="absolute right-0 top-14 z-50 w-80 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
+            <div className="absolute right-0 top-12 z-50 w-[calc(100vw-2rem)] max-w-80 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl sm:top-14 dark:border-slate-700 dark:bg-slate-800">
               <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-slate-700">
                 <h3 className="font-semibold text-slate-800 dark:text-white">
                   Notifications
@@ -489,7 +488,7 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
                     />
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-sm font-semibold text-slate-800 dark:text-white">
                       Resume saved successfully
                     </p>
@@ -513,7 +512,7 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
                     />
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-sm font-semibold text-slate-800 dark:text-white">
                       AI features are ready
                     </p>
@@ -547,7 +546,6 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
         </div>
 
         {/* Profile */}
-
         <div
           ref={profileRef}
           className="relative"
@@ -560,25 +558,25 @@ function DashboardNavbar({ darkMode, setDarkMode }) {
               setSearchResults([]);
             }}
             title="Profile"
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 font-semibold text-white shadow-sm transition hover:bg-blue-700"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 sm:h-11 sm:w-11"
           >
             U
           </button>
 
           {showProfile && (
-            <div className="absolute right-0 top-14 z-50 w-60 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-700 dark:bg-slate-800">
+            <div className="absolute right-0 top-12 z-50 w-[calc(100vw-2rem)] max-w-60 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl sm:top-14 dark:border-slate-700 dark:bg-slate-800">
               <div className="border-b border-slate-200 px-4 py-4 dark:border-slate-700">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 font-semibold text-white">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-600 font-semibold text-white">
                     U
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <p className="font-semibold text-slate-800 dark:text-white">
                       My Account
                     </p>
 
-                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                    <p className="truncate text-xs text-slate-500 dark:text-slate-400">
                       Resume Builder Account
                     </p>
                   </div>
